@@ -1,0 +1,5 @@
+@mixin focus-effect {
+  outline: $outline-size solid var(--color-action);
+  outline-offset: $outline-offset;
+  // border-radius: $border-radius;
+}

@@ -1,0 +1,60 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<main>
+  <h1>
+    {{ title }}!
+  </h1>
+  <form [formGroup]="messageForm" (ngSubmit)="encode()">
+    <div class="input">
+      <label for="message-input">Message Text</label>
+      <textarea
+        name="message-input"
+        formControlName="messageInput"
+        id="message-input"
+      >
+{{messageInput}}</textarea
+      >
+    </div>
+    <div class="seed">
+      <label for="seed-input">Encryption Key (integer)</label>
+      <input
+        id="seed-input"
+        type="number"
+        value="1234"
+        formControlName="seed"
+      />
+    </div>
+    <ul class="mode">
+      <li>
+        <input
+          type="radio"
+          value="encode"
+          id="encode"
+          name="mode"
+          formControlName="mode"
+        />
+        <label for="encode">Encode</label>
+      </li>
+      <li>
+        <input
+          type="radio"
+          value="decode"
+          id="decode"
+          name="mode"
+          formControlName="mode"
+        />
+        <label for="decode">Decode</label>
+      </li>
+    </ul>
+    <div class="activate">
+      <input
+        class="button"
+        type="button"
+        value="{{messageForm.get('mode').value}} Message"
+        (click)="encode()"
+      />
+    </div>
+  </form>
+  <div class="output">
+    <p>{{messageOutput}}</p>
+  </div>
+</main>

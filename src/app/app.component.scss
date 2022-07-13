@@ -1,0 +1,74 @@
+@import "../styles/variables";
+@import "../styles/mixins";
+
+main,
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  width: clamp(320px, 80vw, 1920px);
+  margin: 0 auto;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  justify-items: start;
+}
+
+label {
+  text-align: start;
+}
+
+.mode {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-around;
+  align-items: stretch;
+
+  & > * {
+    flex-basis: 50%;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: .5rem;
+
+    &::before {
+      content: "";
+      display: block;
+      margin-right: .5rem;
+      height: 0;
+      width: 0;
+      overflow: hidden;
+      border:1rem solid;
+      border-color: transparent;
+      border-width: .5rem 0 .5rem .5rem;
+    }
+  }
+
+  input:focus + label {
+   @include focus-effect;
+  }
+
+  input:checked + label::before {
+    content: "";
+    display: block;
+    
+    border-color: transparent transparent transparent var(--color-ink);
+  }
+}
