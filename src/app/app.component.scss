@@ -72,3 +72,17 @@ label {
     border-color: transparent transparent transparent var(--color-ink);
   }
 }
+
+.output {
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  // width: clamp(20rem, 80%, 40rem);
+  // height:20rem;
+  padding: 1rem;
+  background: var(--color-ink);
+  color: var(--color-bg);
+  border-radius:.5rem;
+  border: 1px solid var(--color-bg)
+}

@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-root",
@@ -8,12 +8,13 @@ import { FormGroup, FormControl } from "@angular/forms";
 })
 export class AppComponent {
   messageForm = new FormGroup({
-    messageInput: new FormControl("Test Message."),
-    seed: new FormControl("1234"),
-    mode: new FormControl("encode")
+    messageInput: new FormControl("Test Message.", Validators.required),
+    seed: new FormControl("1234", Validators.required),
+    mode: new FormControl("encode"),
+    messageOutput: new FormControl("")
   });
   title = "Angular Code Messages";
-  messageInput = "Initial message.";
+  // messageInput = "Initial message.";
   messageOutput = "";
 
   characterString =
@@ -34,7 +35,6 @@ export class AppComponent {
     let seedArray = seedString.split("");
     let characterArray = this.characterString.split("");
     let output = [];
-    console.log(inputArray);
 
     for (let i = 0; i < inputArray.length; i++) {
       let offset = parseInt(seedArray[i % seedArray.length], 10);
@@ -45,10 +45,13 @@ export class AppComponent {
       if (characterIndex !== -1) {
         output[i] = characterArray[characterIndex + offset];
       } else {
-        console.log(inputArray[i]);
         output[i] = inputArray[i];
       }
     }
     this.setOutputValue(output.join(""));
+    this.messageForm.patchValue({
+      messageInput: output.join(""),
+      messageOutput: output.join("")
+    });
   };
 }

@@ -4,6 +4,15 @@
     {{ title }}!
   </h1>
   <form [formGroup]="messageForm" (ngSubmit)="encode()">
+    <div class="seed">
+      <label for="seed-input">Encryption Key (integer)</label>
+      <input
+        id="seed-input"
+        type="number"
+        value="1234"
+        formControlName="seed"
+      />
+    </div>
     <div class="input">
       <label for="message-input">Message Text</label>
       <textarea
@@ -13,15 +22,6 @@
       >
 {{messageInput}}</textarea
       >
-    </div>
-    <div class="seed">
-      <label for="seed-input">Encryption Key (integer)</label>
-      <input
-        id="seed-input"
-        type="number"
-        value="1234"
-        formControlName="seed"
-      />
     </div>
     <ul class="mode">
       <li>
@@ -46,15 +46,18 @@
       </li>
     </ul>
     <div class="activate">
-      <input
+      <button
+        [disabled]="messageForm.invalid"
         class="button"
-        type="button"
-        value="{{messageForm.get('mode').value}} Message"
+        type="submit"
         (click)="encode()"
-      />
+      >
+        {{messageForm.get('mode').value}} Message
+      </button>
     </div>
+    <!-- <textarea type="text" class="output" formControlName="messageOutput"></textarea> -->
   </form>
-  <div class="output">
+  <!-- <div class="output">
     <p>{{messageOutput}}</p>
-  </div>
+  </div> -->
 </main>
